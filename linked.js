@@ -121,6 +121,24 @@ class DoublyLinkedList {
     this.length--;
     return this;
   }
+
+  reverse() {
+    if (!this.head.next) {
+      return this;
+    }
+    let first = this.head;
+    this.tail = this.head;
+    let second = first.next;
+    while (second) {
+      const temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+    return this;
+  }
 }
 
 const myLinkedList = new DoublyLinkedList(10);
@@ -129,5 +147,6 @@ myLinkedList.append(16);
 myLinkedList.prepend(2);
 myLinkedList.insert(2, 3);
 myLinkedList.remove(0);
+myLinkedList.reverse();
 console.log(myLinkedList.printList());
-// console.log(myLinkedList);
+console.log(myLinkedList);
