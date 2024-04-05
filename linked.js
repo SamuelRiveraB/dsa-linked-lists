@@ -103,7 +103,9 @@ class DoublyLinkedList {
       return console.log("Index not found");
     }
     if (index === 0) {
-      return (this.head = this.head.next);
+      this.head = this.head.next;
+      this.head.prev = null;
+      return this;
     }
 
     let aux = 0;
@@ -115,6 +117,7 @@ class DoublyLinkedList {
       aux++;
     }
     previousNode.next = currentNode.next;
+    previousNode.next.prev = previousNode;
     this.length--;
     return this;
   }
@@ -125,6 +128,6 @@ myLinkedList.append(5);
 myLinkedList.append(16);
 myLinkedList.prepend(2);
 myLinkedList.insert(2, 3);
-// myLinkedList.remove(10);
+myLinkedList.remove(0);
 console.log(myLinkedList.printList());
 // console.log(myLinkedList);
